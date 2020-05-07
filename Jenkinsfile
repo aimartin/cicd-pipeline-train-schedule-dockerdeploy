@@ -15,7 +15,8 @@ pipeline {
             steps {
                 echo 'Running build Docker'
                 script {
-                    def customImage = docker.build("aiep/train-schedule:${env.BUILD_ID}")
+                    customImage = docker.build("aiep/train-schedule:${env.BUILD_ID}")
+                    
                 }
             }
         }
