@@ -11,7 +11,7 @@ pipeline {
         stage('BuildDocker') {
             steps {
                 echo 'Running build Docker'
-                
+                docker.build("train-schedule:${env.BUILD_ID}")
             }
         }
     }
