@@ -12,7 +12,7 @@ pipeline {
             steps {
                 echo 'Running build Docker'
                 script {
-                    def customImage = docker.build("train-schedule:${env.BUILD_ID}")
+                    def customImage = docker.build("aiep/train-schedule:${env.BUILD_ID}")
                 }
             }
         }
@@ -21,7 +21,7 @@ pipeline {
                 echo 'Pushing Docker Image to Registry'
                 withDockerRegistry([ credentialsId: "docker_hub_login", url: "" ]) {
                   // following commands will be executed within logged docker registry
-                  sh "docker push train-schedule:${env.BUILD_ID}"
+                  sh "docker push aiep/train-schedule:${env.BUILD_ID}"
                   //customImage.push()
                 }
             }
