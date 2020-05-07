@@ -16,5 +16,15 @@ pipeline {
                 }
             }
         }
+        stage('PushDocker') {
+            steps {
+                echo 'Pushing Docker Image to Registry'
+                withDockerRegistry([ credentialsId: "docker_hub_login" ]) {
+                  // following commands will be executed within logged docker registry
+                  //sh 'docker push <image>'
+                  customImage.push()
+                }
+            }
+        }
     }
 }
