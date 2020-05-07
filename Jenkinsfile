@@ -8,5 +8,11 @@ pipeline {
                 archiveArtifacts artifacts: 'dist/trainSchedule.zip'
             }
         }
+        stage('BuildDocker') {
+            agent { dockerfile true }
+            steps {
+                echo 'Running build Docker'
+            }
+        }
     }
 }
