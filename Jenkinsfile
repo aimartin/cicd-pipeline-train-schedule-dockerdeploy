@@ -25,9 +25,11 @@ pipeline {
             }
             steps {
                 echo 'Pushing Docker Image to Registry'
-                docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
-                    customImage.push("${env.BUILD_NUMBER}")
-                    customImage.push("latest")
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
+                        customImage.push("${env.BUILD_NUMBER}")
+                        customImage.push("latest")
+                    }
                 }
             }
         }
