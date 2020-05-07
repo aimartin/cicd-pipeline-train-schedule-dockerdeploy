@@ -9,9 +9,9 @@ pipeline {
             }
         }
         stage('BuildDocker') {
-            agent { dockerfile true }
             steps {
                 echo 'Running build Docker'
+                def customImage = docker.build("train-schedule:${env.BUILD_ID}")
             }
         }
     }
