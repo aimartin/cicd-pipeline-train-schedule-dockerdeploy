@@ -19,10 +19,10 @@ pipeline {
         stage('PushDocker') {
             steps {
                 echo 'Pushing Docker Image to Registry'
-                withDockerRegistry([ credentialsId: "docker_hub_login" ]) {
+                withDockerRegistry([ credentialsId: "docker_hub_login", url: ]) {
                   // following commands will be executed within logged docker registry
-                  //sh 'docker push <image>'
-                  customImage.push()
+                  sh 'docker push "train-schedule:${env.BUILD_ID}"'
+                  //customImage.push()
                 }
             }
         }
